@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+        <!--======================FORM VIEW  WIZARD=======================-->
+        <record id="insert_currency_act_wizard" model="ir.ui.view">
+            <field name="name">Consulta de Tasa de Cambio</field>
+            <field name="model">insert.currency.act</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Consulta de Tasa de Cambio">
+                    <separator colspan="4" string="Consulta Moneda"/>
+                        <group colspan="4" col="4">
+                            <field name="currency_default" readonly="1"/>
+                        </group>
+                        <group col="13" colspan="10">
+                            <button special="cancel" string="_Cancelar" type="object" icon="gtk-cancel"/>
+                            <button string="Insertar" name="exec_currency" icon="gtk-ok" type="object"/>
+                        </group>
+                    </form>
+                </field>
+            </record>
+
+
+        <!--==============ACCION============-->
+        <act_window
+            name="Asistente Tasa Cambio"
+            res_model="insert.currency.act"
+            src_model="res.currency"
+            view_mode="form" target="new"
+            key2="client_action_multi"
+            id="action_wizard_consult_rate"/>
+
+        <record id="ps_res_currency_consult_form" model="ir.ui.view">
+            <field name="name">res.currency</field>
+            <field name="model">res.currency</field>
+            <field name="inherit_id" ref="base.view_currency_form" />
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <button name='%(action_wizard_consult_rate)d' type='action' string='Consultar Tasa de Cambio' icon="gtk-execute"/>
+                </field>
+            </field>
+        </record>
+
+
+</data>
+</openerp>
