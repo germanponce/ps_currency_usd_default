@@ -52,7 +52,7 @@ class insert_currency_act(osv.osv_memory):
         currency = jquery('div.valor').text()
         active_ids = context['active_ids']
         date_act = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        currency_rep = currency.replace('1 Dolar = $','').replace('Pesos Mexicanos','').replace(' ','').replace(',','.')
+        currency_rep = currency.replace('1 Dólar = $','').replace('Pesos Mexicanos','').replace(' ','').replace(',','.')
         currency_br = self.pool.get('res.currency').browse(cr, uid, active_ids, context=None)[0]
         if currency_br.name.upper() != 'USD':
             raise osv.except_osv('Error!', 
